@@ -1,0 +1,51 @@
+
+function jugar() {
+let continuar = true;
+
+while (continuar) {
+        // 1. La computadora genera un número al azar entre 1 y 9
+        const numeroComputadora = Math.floor(Math.random() * 9) + 1;
+
+        // 2. Pedir número al usuario entre 3 y 6 con validación
+        let numeroUsuario;
+        do {
+            numeroUsuario = parseInt(prompt("Ingrese un número entre 3 y 6:"));
+            if (numeroUsuario < 3 || numeroUsuario > 6 || isNaN(numeroUsuario)) {
+                alert("Error: El número debe estar exclusivamente entre 3 y 6.");
+            }
+        } while (numeroUsuario < 3 || numeroUsuario > 6 || isNaN(numeroUsuario));
+
+        // 3. Pedir al usuario que adivine la relación
+        let prediccion = prompt(`¿Tu número (${numeroUsuario}) es MAYOR, MENOR o IGUAL al de la computadora?`).toLowerCase();
+
+        // 4. Lógica de comparación
+        let resultadoReal;
+        if (numeroUsuario > numeroComputadora) {
+            resultadoReal = "mayor";
+        } else if (numeroUsuario < numeroComputadora) {
+            resultadoReal = "menor";
+        } else {
+            resultadoReal = "igual";
+        }
+
+        // 5. Mostrar resultados
+        let mensajeResultado = `La computadora eligió ${numeroComputadora}, usted eligió ${numeroUsuario}. `;
+        
+        if (prediccion === resultadoReal) {
+            alert(mensajeResultado + `Su elección es ${prediccion}. ¡Ha adivinado!`);
+        } else {
+            alert(mensajeResultado + `Su elección fue ${prediccion}, pero era ${resultadoReal}. No ha adivinado.`);
+        }
+
+        // 6. Preguntar si quiere jugar otra vez
+        let respuesta = prompt("¿Quiere jugar otra vez? (SI/NO)").toUpperCase();
+        if (respuesta !== "SI") {
+            continuar = false;
+            // Reemplaza estos datos con tu información real
+            alert("Juego terminado.\nNombre: Tu Nombre Aquí\nCarnet: Tu Número de Carnet");
+        }
+    }
+}
+
+// Ejecutar el juego al cargar
+jugar();
